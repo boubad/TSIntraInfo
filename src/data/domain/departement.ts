@@ -1,5 +1,5 @@
 //departement.ts
-/// <reference path="./descriptionitem.ts" />
+import InfoData = require('../../infodata');
 //
 import DescriptionItem = require('./descriptionitem');
 //
