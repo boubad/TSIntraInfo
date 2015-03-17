@@ -1,6 +1,5 @@
 //crypto.spec.ts
 //
-//
 /// <reference path='../../../src/typings/jasmine/jasmine.d.ts' />;
 //
 import MyCrypto = require('../../../src/data/domain/crypto');
