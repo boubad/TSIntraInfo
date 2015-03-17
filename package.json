@@ -1,0 +1,23 @@
+{
+  "name": "intrainfo",
+  "version": "1.0.0",
+  "description": "intrainfo",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "Boubacar Diarra",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "mongodb": "*",
+    "mongoskin": "*",
+    "morgan": "*",
+    "q": "^1.2.0"
+  },
+  "devDependencies": {
+    "jasmine": "*"
+  }
+}

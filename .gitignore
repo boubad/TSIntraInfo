@@ -26,3 +26,8 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+.c9
+/src/**/*.js
+/spec/**/*.js
+.zedstate
+tsconfig.json
