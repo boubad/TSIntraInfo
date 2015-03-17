@@ -1,5 +1,5 @@
 // nodejshttpmanager.ts
-/// <reference path="../typings/infodata/infodata.d.ts" />
+import InfoData = require('../infodata');
 //
 import http = require('http');
 import Q = require('q');

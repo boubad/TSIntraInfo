@@ -1,5 +1,5 @@
 // siglenameitem.ts
-/// <reference path="./departementchild.ts" />
+import InfoData = require('../../infodata');
 //
 import DepartementChildItem = require('./departementchild');
 //

@@ -1,5 +1,5 @@
 //enseignant.ts
-/// <reference path="./departementperson.ts" />
+import InfoData = require('../../infodata');
 //
 import DepartementPerson = require('./departementperson');
 //

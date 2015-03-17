@@ -1,6 +1,5 @@
 //semestre.ts
-/// <reference path="./intervalitem.ts" />
-//
+import InfoData = require('../../infodata');
 import IntervalItem = require('./intervalitem');
 //
 class Semestre extends IntervalItem implements InfoData.ISemestre {
