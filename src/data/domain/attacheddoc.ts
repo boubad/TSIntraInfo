@@ -1,5 +1,5 @@
 // attacheddoc.ts
-/// <reference path="./baseitem.ts" />
+import InfoData = require('../../infodata');
 //
 import BaseItem = require('./baseitem');
 //
