@@ -1,5 +1,5 @@
 //annee.ts
-import InfoData = require('../../infodata');
+/// <reference path="./intervalitem.ts" />
 //
 import IntervalItem = require('./intervalitem');
 //

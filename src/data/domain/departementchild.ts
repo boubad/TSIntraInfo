@@ -1,5 +1,6 @@
 // departementchild.ts
-import InfoData = require('../../infodata');
+/// <reference path="./descriptionitem.ts" />
+//
 import DescriptionItem = require('./descriptionitem');
 //
 class DepartementChildItem extends DescriptionItem implements InfoData.IDepartementChild {

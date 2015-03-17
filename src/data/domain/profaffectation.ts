@@ -1,5 +1,5 @@
 //etudaffectation.ts
-import InfoData = require('../../infodata');
+/// <reference path="./affectation.ts" />
 //
 import Affectation = require('./affectation');
 //

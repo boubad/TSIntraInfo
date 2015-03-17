@@ -1,6 +1,5 @@
 // descriptionitem.ts
 //
-import InfoData = require('../../infodata');
 import BaseItem = require('./baseitem');
 //
 class DescriptionItem extends BaseItem  implements InfoData.IDescriptionItem {

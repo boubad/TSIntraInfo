@@ -1,5 +1,6 @@
 // person.ts
-import InfoData = require('../../infodata');
+/// <reference path="./descriptionitem.ts" />
+/// <reference path="./crypto.ts" />
 //
 import DescriptionItem = require('./descriptionitem');
 import MyCrypto = require('./crypto');

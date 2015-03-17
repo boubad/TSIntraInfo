@@ -1,6 +1,6 @@
 // itemdatamanager.ts
 //
-import InfoData = require('../../infodata');
+/// <reference path="../../typings/infodata/infodata.d.ts" />
 //
 import Q = require('q');
 //
@@ -148,7 +148,7 @@ class ItemDataManager implements InfoData.IDataManager {
       return vRet;
     });
   }// get_by_id
-
+  
   public insert_one_item(item: InfoData.IBaseItem): Q.IPromise<any> {
     return this._perform_post(item);
   }
