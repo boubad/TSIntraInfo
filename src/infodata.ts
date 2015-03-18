@@ -65,6 +65,15 @@ export interface IPerson extends IDescriptionItem {
   is_etud?: boolean;
   is_reader?: boolean;
 }// interface IPerson
+export interface IProfPerson extends IPerson {
+
+}// interface IProfPerson
+export interface IOperPerson extends IPerson {
+
+}// interface IOperPerson
+export interface IAdminPerson extends IPerson {
+
+}// interface IAdminPerson
 export interface IEtudiantPerson extends IPerson {
   dossier?: string;
   sexe?: string;
@@ -127,6 +136,8 @@ export interface IEtudiant extends IDepartementPerson {
 export interface IEnseignant extends IDepartementPerson {
 }// interface IEnseignant
 export interface IOperator extends IDepartementPerson {
+}// interface IOperator
+export interface IAdministrator extends IDepartementPerson {
 }// interface IOperator
 //
 export interface IAffectation extends IDescriptionItem {

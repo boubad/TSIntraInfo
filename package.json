@@ -12,6 +12,7 @@
     "body-parser": "*",
     "cors": "*",
     "express": "*",
+    "moment": "^2.9.0",
     "mongodb": "*",
     "mongoskin": "*",
     "morgan": "*",

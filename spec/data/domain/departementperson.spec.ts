@@ -1,15 +1,15 @@
-//descriptionitem.spec.ts
+//departementperson.spec.ts
 //
 /// <reference path='../../../src/typings/jasmine/jasmine.d.ts' />;
 //
-import DescriptionItem = require('../../../src/data/domain/descriptionitem');
+import DepartementPerson = require('../../../src/data/domain/departementperson');
 //
-describe('DescriptionItem Tests', () => {
+describe('DepartementPerson Tests', () => {
   // empty constructor
   describe(" empty constructor", () => {
-    var data: DescriptionItem;
+    var data: DepartementPerson;
     beforeEach(() => {
-      data = new DescriptionItem();
+      data = new DepartementPerson();
     });
     it(" id property ", () => {
       expect(data.id).toBeDefined();
@@ -35,6 +35,18 @@ describe('DescriptionItem Tests', () => {
       expect(data.has_avatarid).toBeDefined();
       expect(data.has_avatarid).toEqual(false);
     });
+    it(" personid property ", () => {
+      expect(data.personid).toBeDefined();
+      expect(data.personid).toBeNull();
+      expect(data.has_personid).toBeDefined();
+      expect(data.has_personid).toEqual(false);
+    });
+    it(" departementid property ", () => {
+      expect(data.departementid).toBeDefined();
+      expect(data.departementid).toBeNull();
+      expect(data.has_departementid).toBeDefined();
+      expect(data.has_departementid).toEqual(false);
+    });
     it(" type property ", () => {
       expect(data.type).toBeDefined();
       expect(data.type).toBeNull();
@@ -58,6 +70,8 @@ describe('DescriptionItem Tests', () => {
       expect(oMap.type).not.toBeDefined();
       expect(oMap.remarks).not.toBeDefined();
       expect(oMap.avatarid).not.toBeDefined();
+      expect(oMap.personid).not.toBeDefined();
+      expect(oMap.departementid).not.toBeDefined();
     });
     it(" to_fetch_map ", () => {
       expect(data.to_fetch_map).toBeDefined();
@@ -68,20 +82,27 @@ describe('DescriptionItem Tests', () => {
       expect(oMap._rev).not.toBeDefined();
       expect(oMap.remarks).not.toBeDefined();
       expect(oMap.avatarid).not.toBeDefined();
+      expect(oMap.personid).not.toBeDefined();
+      expect(oMap.departementid).not.toBeDefined();
     });
     //
   });
   // normal constructor
   describe(" empty constructor", () => {
-    var data: DescriptionItem;
-    var id:any = 100;
-    var rev:any = 3;
+    var data: DepartementPerson;
+    var id: any = 100;
+    var rev: any = 3;
     var remarks: string = 'rem';
     var avatarid: any = 235;
+    var personid: any = 6000;
+    var departementid: any = 500;
+    //
     beforeEach(() => {
-      var oMap: any = { _id: id, _rev: rev, remarks: remarks,
-      avatarid : avatarid };
-      data = new DescriptionItem(oMap);
+      var oMap: any = {
+        _id: id, _rev: rev, remarks: remarks,
+        avatarid: avatarid, personid: personid, departementid: departementid
+      };
+      data = new DepartementPerson(oMap);
     });
     it(" id property ", () => {
       expect(data.id).toEqual(id);
@@ -99,6 +120,14 @@ describe('DescriptionItem Tests', () => {
       expect(data.avatarid).toEqual(avatarid);
       expect(data.has_avatarid).toEqual(true);
     });
+    it(" personid property ", () => {
+      expect(data.personid).toEqual(personid);
+      expect(data.has_personid).toEqual(true);
+    });
+    it(" departementid property ", () => {
+      expect(data.departementid).toEqual(departementid);
+      expect(data.has_departementid).toEqual(true);
+    });
     it(" type property ", () => {
       expect(data.type).toBeDefined();
       expect(data.type).toBeNull();
@@ -124,6 +153,8 @@ describe('DescriptionItem Tests', () => {
       expect(oMap._rev).not.toBeDefined();
       expect(oMap.remarks).toEqual(remarks);
       expect(oMap.avatarid).toEqual(avatarid);
+      expect(data.personid).toEqual(personid);
+      expect(data.departementid).toEqual(departementid);
     });
     it(" to_fetch_map ", () => {
       expect(data.to_fetch_map).toBeDefined();
@@ -134,6 +165,8 @@ describe('DescriptionItem Tests', () => {
       expect(oMap._rev).toEqual(rev);
       expect(oMap.remarks).toEqual(remarks);
       expect(oMap.avatarid).toEqual(avatarid);
+      expect(data.personid).toEqual(personid);
+      expect(data.departementid).toEqual(departementid);
     });
     //
   });

@@ -1,15 +1,18 @@
-//descriptionitem.spec.ts
+//enseignant.spec.ts
 //
 /// <reference path='../../../src/typings/jasmine/jasmine.d.ts' />;
 //
-import DescriptionItem = require('../../../src/data/domain/descriptionitem');
+import Enseignant = require('../../../src/data/domain/enseignant');
 //
-describe('DescriptionItem Tests', () => {
+describe('Enseignant Tests', () => {
+  //
+  var type:string = 'enseignant';
+  var colname:string = 'enseignants';
   // empty constructor
   describe(" empty constructor", () => {
-    var data: DescriptionItem;
+    var data: Enseignant;
     beforeEach(() => {
-      data = new DescriptionItem();
+      data = new Enseignant();
     });
     it(" id property ", () => {
       expect(data.id).toBeDefined();
@@ -35,17 +38,23 @@ describe('DescriptionItem Tests', () => {
       expect(data.has_avatarid).toBeDefined();
       expect(data.has_avatarid).toEqual(false);
     });
+    it(" personid property ", () => {
+      expect(data.personid).toBeDefined();
+      expect(data.personid).toBeNull();
+      expect(data.has_personid).toBeDefined();
+      expect(data.has_personid).toEqual(false);
+    });
+    it(" departementid property ", () => {
+      expect(data.departementid).toBeDefined();
+      expect(data.departementid).toBeNull();
+      expect(data.has_departementid).toBeDefined();
+      expect(data.has_departementid).toEqual(false);
+    });
     it(" type property ", () => {
-      expect(data.type).toBeDefined();
-      expect(data.type).toBeNull();
-      expect(data.has_type).toBeDefined();
-      expect(data.has_type).toEqual(false);
+      expect(data.type).toEqual(type);
     });
     it(" collection_name property ", () => {
-      expect(data.collection_name).toBeDefined();
-      expect(data.collection_name).toBeNull();
-      expect(data.has_collection_name).toBeDefined();
-      expect(data.has_collection_name).toEqual(false);
+      expect(data.collection_name).toEqual(colname);
     });
     it(" is_storeable property ", () => {
       expect(data.is_storeable).toBeDefined();
@@ -55,33 +64,42 @@ describe('DescriptionItem Tests', () => {
       expect(data.to_insert_map).toBeDefined();
       var oMap: any = {};
       data.to_insert_map(oMap);
-      expect(oMap.type).not.toBeDefined();
+      expect(data.type).toEqual(type);
       expect(oMap.remarks).not.toBeDefined();
       expect(oMap.avatarid).not.toBeDefined();
+      expect(oMap.personid).not.toBeDefined();
+      expect(oMap.departementid).not.toBeDefined();
     });
     it(" to_fetch_map ", () => {
       expect(data.to_fetch_map).toBeDefined();
       var oMap: any = {};
       data.to_fetch_map(oMap);
-      expect(oMap.type).not.toBeDefined();
+      expect(data.type).toEqual(type);
       expect(oMap._id).not.toBeDefined();
       expect(oMap._rev).not.toBeDefined();
       expect(oMap.remarks).not.toBeDefined();
       expect(oMap.avatarid).not.toBeDefined();
+      expect(oMap.personid).not.toBeDefined();
+      expect(oMap.departementid).not.toBeDefined();
     });
     //
   });
   // normal constructor
-  describe(" empty constructor", () => {
-    var data: DescriptionItem;
-    var id:any = 100;
-    var rev:any = 3;
+  describe(" normal constructor", () => {
+    var data: Enseignant;
+    var id: any = 100;
+    var rev: any = 3;
     var remarks: string = 'rem';
     var avatarid: any = 235;
+    var personid: any = 6000;
+    var departementid: any = 500;
+    //
     beforeEach(() => {
-      var oMap: any = { _id: id, _rev: rev, remarks: remarks,
-      avatarid : avatarid };
-      data = new DescriptionItem(oMap);
+      var oMap: any = {
+        _id: id, _rev: rev, remarks: remarks,
+        avatarid: avatarid, personid: personid, departementid: departementid
+      };
+      data = new Enseignant(oMap);
     });
     it(" id property ", () => {
       expect(data.id).toEqual(id);
@@ -99,41 +117,46 @@ describe('DescriptionItem Tests', () => {
       expect(data.avatarid).toEqual(avatarid);
       expect(data.has_avatarid).toEqual(true);
     });
+    it(" personid property ", () => {
+      expect(data.personid).toEqual(personid);
+      expect(data.has_personid).toEqual(true);
+    });
+    it(" departementid property ", () => {
+      expect(data.departementid).toEqual(departementid);
+      expect(data.has_departementid).toEqual(true);
+    });
     it(" type property ", () => {
-      expect(data.type).toBeDefined();
-      expect(data.type).toBeNull();
-      expect(data.has_type).toBeDefined();
-      expect(data.has_type).toEqual(false);
+      expect(data.type).toEqual(type);
     });
     it(" collection_name property ", () => {
-      expect(data.collection_name).toBeDefined();
-      expect(data.collection_name).toBeNull();
-      expect(data.has_collection_name).toBeDefined();
-      expect(data.has_collection_name).toEqual(false);
+      expect(data.collection_name).toEqual(colname);
     });
     it(" is_storeable property ", () => {
-      expect(data.is_storeable).toBeDefined();
-      expect(data.is_storeable).toEqual(false);
+      expect(data.is_storeable).toEqual(true);
     });
     it(" to_insert_map ", () => {
       expect(data.to_insert_map).toBeDefined();
       var oMap: any = {};
       data.to_insert_map(oMap);
-      expect(oMap.type).not.toBeDefined();
+      expect(oMap.type).toEqual(type);
       expect(oMap._id).not.toBeDefined();
       expect(oMap._rev).not.toBeDefined();
       expect(oMap.remarks).toEqual(remarks);
       expect(oMap.avatarid).toEqual(avatarid);
+      expect(data.personid).toEqual(personid);
+      expect(data.departementid).toEqual(departementid);
     });
     it(" to_fetch_map ", () => {
       expect(data.to_fetch_map).toBeDefined();
       var oMap: any = {};
       data.to_fetch_map(oMap);
-      expect(oMap.type).not.toBeDefined();
+      expect(oMap.type).toEqual(type);
       expect(oMap._id).toEqual(id);
       expect(oMap._rev).toEqual(rev);
       expect(oMap.remarks).toEqual(remarks);
       expect(oMap.avatarid).toEqual(avatarid);
+      expect(data.personid).toEqual(personid);
+      expect(data.departementid).toEqual(departementid);
     });
     //
   });
