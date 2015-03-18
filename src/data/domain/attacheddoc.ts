@@ -8,7 +8,7 @@ class AttachedDoc extends BaseItem implements InfoData.IAttachedDoc {
   private _mime: string;
   private _genre: string;
   private _name: string;
-  private _data: number[];
+  private _data: any[];
   //
   constructor(oMap?: any) {
     super(oMap);
@@ -30,10 +30,10 @@ class AttachedDoc extends BaseItem implements InfoData.IAttachedDoc {
       }
     } // oMap
   } // constructor
-  public get data(): number[] {
+  public get data(): any[] {
     return (this._data != undefined) ? this._data : null;
   } // id
-  public set data(s: number[]) {
+  public set data(s: any[]) {
     if ((s != undefined) && (s != null) && (s.length > 0)) {
       this._data = s;
     } else {
@@ -48,7 +48,7 @@ class AttachedDoc extends BaseItem implements InfoData.IAttachedDoc {
   } // id
   public set name(s: string) {
     if ((s != undefined) && (s != null) && (s.trim().length > 0)) {
-      this.collection_name = s.trim();
+      this._name = s.trim();
     } else {
       this._name = null;
     }
