@@ -1,19 +1,19 @@
-//operperson.spec.ts
+//adminperson.spec.ts
 //
 /// <reference path='../../../src/typings/jasmine/jasmine.d.ts' />;
 //
 import BaseItem = require('../../../src/data/domain/baseitem');
-import OperPerson = require('../../../src/data/domain/operperson');
+import AdminPerson = require('../../../src/data/domain/adminperson');
 //
-describe('OperPerson Tests', () => {
+describe('AdminPerson Tests', () => {
   //
-  var type:string = 'operperson';
+  var type:string = 'adminperson';
   var colname:string = 'persons';
   // empty constructor
   describe(" empty constructor", () => {
-    var data: OperPerson;
+    var data: AdminPerson;
     beforeEach(() => {
-      data = new OperPerson();
+      data = new AdminPerson();
     });
     it(" id property ", () => {
       expect(data.id).toBeDefined();
@@ -185,7 +185,7 @@ describe('OperPerson Tests', () => {
       expect(data.roles).toBeDefined();
       expect(data.roles).not.toBeNull();
       expect(data.has_roles).toEqual(true);
-      expect(data.is_oper).toEqual(true);
+      expect(data.is_admin).toEqual(true);
       var id:string = 'testrole';
       data.add_role(id);
       expect(data.has_roles).toEqual(true);
@@ -274,8 +274,8 @@ describe('OperPerson Tests', () => {
     });
     it(" roles method ", () => {
       expect(data.is_super).toEqual(false);
-      expect(data.is_admin).toEqual(false);
-      expect(data.is_oper).toEqual(true);
+      expect(data.is_admin).toEqual(true);
+      expect(data.is_oper).toEqual(false);
       expect(data.is_prof).toEqual(false);
       expect(data.is_etud).toEqual(false);
       expect(data.is_reader).toEqual(false);
@@ -284,7 +284,7 @@ describe('OperPerson Tests', () => {
   });
   // normal constructor
   describe(" normal constructor", () => {
-    var data: OperPerson;
+    var data: AdminPerson;
     var id:any = 100;
     var rev:any = 3;
     var remarks: string = 'rem';
@@ -311,7 +311,7 @@ describe('OperPerson Tests', () => {
       departementids:departementids, anneeids:anneeids,
       semestreids:semestreids, uniteids:uniteids,
       matiereids:matiereids, groupeids:groupeids};
-      data = new OperPerson(oMap);
+      data = new AdminPerson(oMap);
       data.reset_password();
     });
     it(" id property ", () => {
@@ -460,8 +460,8 @@ describe('OperPerson Tests', () => {
     });
     it(" roles method ", () => {
       expect(data.is_super).toEqual(false);
-      expect(data.is_admin).toEqual(false);
-      expect(data.is_oper).toEqual(true);
+      expect(data.is_admin).toEqual(true);
+      expect(data.is_oper).toEqual(false);
       expect(data.is_prof).toEqual(false);
       expect(data.is_etud).toEqual(false);
       expect(data.is_reader).toEqual(false);
