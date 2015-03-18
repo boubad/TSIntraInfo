@@ -19,20 +19,20 @@ class Departement extends DescriptionItem implements InfoData.IDepartement {
     } // oMap
   } // constructor
   public get sigle(): string {
-    return (this._sigle != undefined) ? this._sigle : null;
+    return (this._sigle !== undefined) ? this._sigle : null;
   }
   public set sigle(s: string) {
-    if ((s != undefined) && (s != null) && (s.trim().length > 0)) {
+    if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
       this._sigle = s.trim().toLowerCase();
     } else {
       this._sigle = null;
     }
   }
   public get has_sigle(): boolean {
-    return (this.sigle != null);
+    return (this.sigle !== null);
   }
   public get name(): string {
-    return (this._name != undefined) ? this._name : null;
+    return (this._name !== undefined) ? this._name : null;
   }
   public set name(s: string) {
     if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
@@ -45,7 +45,7 @@ class Departement extends DescriptionItem implements InfoData.IDepartement {
     return (this.name !== null);
   }
   public get is_storeable(): boolean {
-    return (this.type != null) && (this.collection_name != null) &&
+    return (this.type !== null) && (this.collection_name !== null) &&
       this.has_sigle;
   }
   to_insert_map(oMap: any): void {

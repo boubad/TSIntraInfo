@@ -1,17 +1,15 @@
-//groupe.spec.ts
+//intervalitem.spec.ts
+//
 /// <reference path='../../../src/typings/jasmine/jasmine.d.ts' />;
 //
-import Groupe = require('../../../src/data/domain/groupe');
+import IntervalItem = require('../../../src/data/domain/intervalitem');
 //
-describe('Groupe Tests', () => {
-    //
-    var type:string = 'groupe';
-    var colname:string = 'groupes';
+describe('IntervalItem Tests', () => {
   // empty constructor
   describe(" empty constructor", () => {
-    var data: Groupe;
-    beforeEach(() => {
-      data = new Groupe();
+    var data: IntervalItem;
+    beforeEach(function() {
+      data = new IntervalItem();
     });
     it(" id property ", () => {
       expect(data.id).toBeDefined();
@@ -55,13 +53,29 @@ describe('Groupe Tests', () => {
       expect(data.has_name).toBeDefined();
       expect(data.has_name).toEqual(false);
     });
+    it(" startDate property ", () => {
+      expect(data.startDate).toBeDefined();
+      expect(data.startDate).toBeNull();
+      expect(data.has_startDate).toBeDefined();
+      expect(data.has_startDate).toEqual(false);
+    });
+    it(" endDate property ", () => {
+      expect(data.endDate).toBeDefined();
+      expect(data.endDate).toBeNull();
+      expect(data.has_endDate).toBeDefined();
+      expect(data.has_endDate).toEqual(false);
+    });
     it(" type property ", () => {
-      expect(data.type).toEqual(type);
-      expect(data.has_type).toEqual(true);
+      expect(data.type).toBeDefined();
+      expect(data.type).toBeNull();
+      expect(data.has_type).toBeDefined();
+      expect(data.has_type).toEqual(false);
     });
     it(" collection_name property ", () => {
-      expect(data.collection_name).toEqual(colname);
-      expect(data.has_collection_name).toEqual(true);
+      expect(data.collection_name).toBeDefined();
+      expect(data.collection_name).toBeNull();
+      expect(data.has_collection_name).toBeDefined();
+      expect(data.has_collection_name).toEqual(false);
     });
     it(" is_storeable property ", () => {
       expect(data.is_storeable).toBeDefined();
@@ -71,18 +85,20 @@ describe('Groupe Tests', () => {
       expect(data.to_insert_map).toBeDefined();
       var oMap: any = {};
       data.to_insert_map(oMap);
-      expect(oMap.type).toEqual(type);
+      expect(oMap.type).not.toBeDefined();
       expect(oMap.remarks).not.toBeDefined();
       expect(oMap.avatarid).not.toBeDefined();
       expect(oMap.departementid).not.toBeDefined();
       expect(oMap.sigle).not.toBeDefined();
       expect(oMap.name).not.toBeDefined();
+      expect(oMap.startDate).not.toBeDefined();
+      expect(oMap.endDate).not.toBeDefined();
     });
     it(" to_fetch_map ", () => {
       expect(data.to_fetch_map).toBeDefined();
       var oMap: any = {};
       data.to_fetch_map(oMap);
-     expect(oMap.type).toEqual(type);
+      expect(oMap.type).not.toBeDefined();
       expect(oMap._id).not.toBeDefined();
       expect(oMap._rev).not.toBeDefined();
       expect(oMap.remarks).not.toBeDefined();
@@ -90,26 +106,32 @@ describe('Groupe Tests', () => {
       expect(oMap.departementid).not.toBeDefined();
       expect(oMap.sigle).not.toBeDefined();
       expect(oMap.name).not.toBeDefined();
+      expect(oMap.startDate).not.toBeDefined();
+      expect(oMap.endDate).not.toBeDefined();
     });
     //
   });
   // normal constructor
   describe(" normal constructor", () => {
-    var data: Groupe;
+    var data: IntervalItem;
     //
-    var id:any = 100;
-    var rev:any = 3;
+    var id: any = 100;
+    var rev: any = 3;
     var remarks: string = 'rem';
     var avatarid: any = 235;
     var departementid = 1000;
-    var sigle:string = 'testsigle';
-    var name:string = 'testname';
+    var sigle: string = 'testsigle';
+    var name: string = 'testname';
+    var startDate: Date = new Date(1990, 10, 5);
+    var endDate: Date = new Date(1991, 11, 6);
     //
     beforeEach(function() {
-      var oMap: any = { _id: id, _rev: rev, remarks: remarks,
-      avatarid : avatarid, departementid: departementid,
-      sigle: sigle, name:name };
-      data = new Groupe(oMap);
+      var oMap: any = {
+        _id: id, _rev: rev, remarks: remarks,
+        avatarid: avatarid, departementid: departementid,
+        sigle: sigle, name: name, startDate: startDate, endDate: endDate
+      };
+      data = new IntervalItem(oMap);
     });
     it(" id property ", () => {
       expect(data.id).toEqual(id);
@@ -135,26 +157,39 @@ describe('Groupe Tests', () => {
       expect(data.sigle).toEqual(sigle);
       expect(data.has_sigle).toEqual(true);
     });
-     it(" name property ", () => {
+    it(" name property ", () => {
       expect(data.name).toEqual(name);
       expect(data.has_name).toEqual(true);
     });
+    it(" startDate property ", () => {
+      expect(data.startDate).toEqual(startDate);
+      expect(data.has_startDate).toEqual(true);
+    });
+    it(" endDate property ", () => {
+      expect(data.endDate).toEqual(endDate);
+      expect(data.has_endDate).toEqual(true);
+    });
     it(" type property ", () => {
-      expect(data.type).toEqual(type);
-      expect(data.has_type).toEqual(true);
+      expect(data.type).toBeDefined();
+      expect(data.type).toBeNull();
+      expect(data.has_type).toBeDefined();
+      expect(data.has_type).toEqual(false);
     });
     it(" collection_name property ", () => {
-      expect(data.collection_name).toEqual(colname);
-      expect(data.has_collection_name).toEqual(true);
+      expect(data.collection_name).toBeDefined();
+      expect(data.collection_name).toBeNull();
+      expect(data.has_collection_name).toBeDefined();
+      expect(data.has_collection_name).toEqual(false);
     });
     it(" is_storeable property ", () => {
-      expect(data.is_storeable).toEqual(true);
+      expect(data.is_storeable).toBeDefined();
+      expect(data.is_storeable).toEqual(false);
     });
     it(" to_insert_map ", () => {
       expect(data.to_insert_map).toBeDefined();
       var oMap: any = {};
       data.to_insert_map(oMap);
-      expect(oMap.type).toEqual(type);
+      expect(oMap.type).not.toBeDefined();
       expect(oMap._id).not.toBeDefined();
       expect(oMap._rev).not.toBeDefined();
       expect(oMap.remarks).toEqual(remarks);
@@ -162,12 +197,14 @@ describe('Groupe Tests', () => {
       expect(oMap.departementid).toEqual(departementid);
       expect(oMap.sigle).toEqual(sigle);
       expect(oMap.name).toEqual(name);
+      expect(data.startDate).toEqual(startDate);
+      expect(data.endDate).toEqual(endDate);
     });
     it(" to_fetch_map ", () => {
       expect(data.to_fetch_map).toBeDefined();
       var oMap: any = {};
       data.to_fetch_map(oMap);
-      expect(oMap.type).toEqual(type);
+      expect(oMap.type).not.toBeDefined();
       expect(oMap._id).toEqual(id);
       expect(oMap._rev).toEqual(rev);
       expect(oMap.remarks).toEqual(remarks);
@@ -175,6 +212,8 @@ describe('Groupe Tests', () => {
       expect(oMap.departementid).toEqual(departementid);
       expect(oMap.sigle).toEqual(sigle);
       expect(oMap.name).toEqual(name);
+      expect(data.startDate).toEqual(startDate);
+      expect(data.endDate).toEqual(endDate);
     });
     //
   });
