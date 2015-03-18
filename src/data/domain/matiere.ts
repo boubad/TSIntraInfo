@@ -115,7 +115,7 @@ class Matiere extends SigleNameItem implements InfoData.IMatiere {
       oMap.genre = this.genre;
     }
     if (this.has_mat_module) {
-      this.mat_module = this.mat_module;
+      oMap.mat_module = this.mat_module;
     }
     if (this.has_coefficient) {
       oMap.coefficient = this.coefficient;
