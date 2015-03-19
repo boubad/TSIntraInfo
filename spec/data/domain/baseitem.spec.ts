@@ -5,12 +5,34 @@
 import BaseItem = require('../../../src/data/domain/baseitem');
 //
 describe('BaseItem Tests', () => {
+  //
+  // static methodes
+  describe(' static  ',()=>{
+    it("  date_format property ", () => {
+      expect(BaseItem.date_format).toBeDefined();
+      expect(BaseItem.date_format).toEqual('YYYY-MM-DD');
+    });
+    it(" check_date property  ", () => {
+      var d:Date = new Date(2015,2,19);
+      console.log('\n' + d.toString() + '\n');
+      var dRet = BaseItem.check_date(d);
+      expect(dRet).not.toBeNull();
+      console.log(dRet.toString() + '\n');
+      var sRet = BaseItem.date_to_string(d);
+      expect(sRet).not.toBeNull();
+      console.log(sRet + '\n');
+      var xRet = BaseItem.string_to_date('2015-03-19');
+      expect(xRet).not.toBeNull();
+      console.log(xRet.toString() + '\n\n');
+    });
+  });
   // empty constructor
   describe(" empty constructor", () => {
     var data: BaseItem;
     beforeEach(function() {
       data = new BaseItem();
     });
+
     it(" id property ", () => {
       expect(data.id).toBeDefined();
       expect(data.id).toBeNull();

@@ -1,6 +1,8 @@
 // baseitem.ts
 import InfoData = require('../../infodata');
 //
+import moment = require('moment');
+//
 class BaseItem implements InfoData.IBaseItem {
   private _id: any;
   private _rev: any;
@@ -15,6 +17,39 @@ class BaseItem implements InfoData.IBaseItem {
       }
     }
   }// constructor
+  public static get date_format(): string {
+    return 'YYYY-MM-DD';
+  }
+  public static check_date(d: Date): Date {
+    var dRet: Date = null;
+    if ((d !== undefined) && (d !== null)) {
+      var x = moment(d);
+      if (x.isValid()) {
+        dRet = x.toDate();
+      }
+    }
+    return dRet;
+  }// check_date
+  public static string_to_date(s: string): Date {
+    var dRet: Date = null;
+    if ((s !== undefined) && (s !== null) && (s.trim().length > 0)) {
+      var x = moment(s, BaseItem.date_format);
+      if (x.isValid()) {
+        dRet = x.toDate();
+      }
+    }
+    return dRet;
+  }// string_to_date
+  public static date_to_string(d: Date): string {
+    var sRet: string = null;
+    if ((d !== undefined) && (d !== null)) {
+      var x = moment(d);
+      if (x.isValid()) {
+        sRet = x.format(BaseItem.date_format);
+      }
+    }
+    return sRet;
+  }// date_to_string
   public get id(): any {
     return ((this._id !== undefined) && (this._id !== null) &&
       (this._id.toString().trim().length > 0)) ?
@@ -131,7 +166,7 @@ class BaseItem implements InfoData.IBaseItem {
           }
         }// i
         if (index >= 0) {
-          cont =  cont.splice(index, 1);
+          cont = cont.splice(index, 1);
         }
       }// val
     }

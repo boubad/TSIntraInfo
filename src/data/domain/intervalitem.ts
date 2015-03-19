@@ -1,6 +1,7 @@
 // intervalitem.ts
 import InfoData = require('../../infodata');
 //
+import BaseItem = require('./baseitem');
 import SigleNameItem = require('./siglenameitem');
 //
 class IntervalItem extends SigleNameItem implements InfoData.IIntervalItem {
@@ -22,7 +23,7 @@ class IntervalItem extends SigleNameItem implements InfoData.IIntervalItem {
     return (this._start != undefined) ? this._start : null;
   }
   public set startDate(d: Date) {
-    this._start = (d != undefined) ? d : null;
+    this._start = BaseItem.check_date(d);
   }
   public get has_startDate(): boolean {
     return (this.startDate != null);
@@ -31,7 +32,7 @@ class IntervalItem extends SigleNameItem implements InfoData.IIntervalItem {
     return (this._end != undefined) ? this._end : null;
   }
   public set endDate(d: Date) {
-    this._end = (d != undefined) ? d : null;
+    this._end = BaseItem.check_date(d);
   }
   public get has_endDate(): boolean {
     return (this.endDate != null);

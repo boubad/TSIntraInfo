@@ -242,13 +242,16 @@ export interface IBaseEvent extends IDescriptionItem {
   has_anneeid:boolean;
   has_semestreid:boolean;
   has_uniteid:boolean;
-  has_matiereid:boolean;   
+  has_matiereid:boolean;
   has_groupeid:boolean;
   has_personid:boolean;
   has_date:boolean;
   has_genre:boolean;
   has_documentids:boolean;
   has_status:boolean;
+  //
+  add_documentid : (id:any) => void;
+  remove_documentid : (id:any) => void;
 }// interface IBaseEvent
 //
 export interface IGroupeEvent extends IBaseEvent {
