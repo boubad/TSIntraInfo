@@ -1,16 +1,23 @@
 // itemdatamanager.ts
 //
 import InfoData = require('../../infodata');
-//
-import Q = require('q');
-//
 import BaseItem = require('../domain/baseitem');
-import Departement = require('../domain/departement');
+
 import Person = require('../domain/person');
 import EtudiantPerson = require('../domain/etudperson');
+import ProfPerson = require('../domain/profperson');
+import AdminPerson = require('../domain/adminperson');
+import OperPerson = require('../domain/operperson');
+import Departement = require('../domain/departement');
+import Annee = require('../domain/annee');
 import Unite = require('../domain/unite');
 import Groupe = require('../domain/groupe');
 import Matiere = require('../domain/matiere');
+import Semestre = require('../domain/semestre');
+import Enseignant = require('../domain/enseignant');
+import Etudiant = require('../domain/etudiant');
+import ProfAffectation = require('../domain/profaffectation');
+import EtudAffectation = require('../domain/etudaffectation');
 //
 class ItemDataManager implements InfoData.IDataManager {
   manager: InfoData.IHttpManager;
@@ -19,24 +26,46 @@ class ItemDataManager implements InfoData.IDataManager {
     this.manager = man;
   }// constructor
   //
-  private _create_item(oMap: any): InfoData.IBaseItem {
-    if (oMap.type == undefined) {
+  public create_item(oMap: any): InfoData.IBaseItem {
+    if ((oMap === undefined) || (oMap === null)){
       return null;
     }
-    var t: string = oMap.type;
+    if ((oMap.type === undefined)  || (oMap.type === null)) {
+      return null;
+    }
+    var t: string = oMap.type.trim().toLowerCase();
+    if (t.length < 1){
+      return null;
+    }
     if (t == 'departement') {
       return new Departement(oMap);
     } else if (t == 'person') {
       return new Person(oMap);
     } else if (t == 'etudperson') {
       return new EtudiantPerson(oMap);
-    } else if (t == 'unite') {
+    } else if (t == 'profperson') {
+      return new ProfPerson(oMap);
+    }  else if (t == 'operperson') {
+      return new OperPerson(oMap);
+    }   else if (t == 'adminperson') {
+      return new AdminPerson(oMap);
+    } else if (t == 'etud') {
+      return new Etudiant(oMap);
+    }  else if (t == 'enseignant') {
+      return new Enseignant(oMap);
+    }  else if (t == 'unite') {
       return new Unite(oMap);
     } else if (t == 'groupe') {
       return new Groupe(oMap);
     } else if (t == 'matiere') {
       return new Matiere(oMap);
-    }
+    } else if (t == 'semestre') {
+      return new Semestre(oMap);
+    }  else if (t == 'profaffectation') {
+      return new ProfAffectation(oMap);
+    }  else if (t == 'etudaffectation') {
+      return new EtudAffectation(oMap);
+    } 
     return null;
   }// create_item
   public form_url(prefix?: string, params?: string[], query?: any): string {
@@ -121,7 +150,7 @@ class ItemDataManager implements InfoData.IDataManager {
       var vRet: InfoData.IBaseItem[] = [];
       var n = dd.length;
       for (var i = 0; i < n; ++i) {
-        var x = self._create_item(dd[i]);
+        var x = self.create_item(dd[i]);
         if (x != null) {
           vRet.push(x);
         }
@@ -143,7 +172,7 @@ class ItemDataManager implements InfoData.IDataManager {
     return this._perform_get(item.collection_name, oMap, false, 0, 1).then((dd) => {
       var vRet: InfoData.IBaseItem = null;
       if (dd.length > 0) {
-        vRet = self._create_item(dd[0]);
+        vRet = self.create_item(dd[0]);
       }
       return vRet;
     });

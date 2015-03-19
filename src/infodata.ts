@@ -288,6 +288,7 @@ export interface IHttpManager {
 }// interface IHttpManager
 //
 export interface IDataManager {
+  create_item : (oMap:any) => IBaseItem;
   get_items_count: (item: IBaseItem) => Q.IPromise<number>;
   get_items: (item: IBaseItem, skip?: number, limit?: number) => Q.IPromise<IBaseItem[]>;
   get_one_item: (item: IBaseItem) => Q.IPromise<IBaseItem>;

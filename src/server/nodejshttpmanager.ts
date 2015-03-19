@@ -34,15 +34,14 @@ class NodeJsHttpManager implements InfoData.IHttpManager {
     };
     var callback = function(response) {
       var str = '';
-      response.on('data', function(chunk) {
+      response.on('data', (chunk) => {
         str += chunk;
       });
-      response.on('end', function() {
+      response.on('end', () => {
         var res = JSON.parse(str);
         deferred.resolve(res);
       });
-      response.on('error', function(err) {
-        var res = JSON.parse(str);
+      response.on('error', (err) => {
         deferred.reject(new Error(err));
       });
     }
@@ -64,15 +63,14 @@ class NodeJsHttpManager implements InfoData.IHttpManager {
     };
     var callback = function(response) {
       var str = '';
-      response.on('data', function(chunk) {
+      response.on('data', (chunk) => {
         str += chunk;
       });
-      response.on('end', function() {
+      response.on('end', () => {
         var res = JSON.parse(str);
         deferred.resolve(res);
       });
-      response.on('error', function(err) {
-        var res = JSON.parse(str);
+      response.on('error', (err) => {
         deferred.reject(new Error(err));
       });
     }
@@ -96,15 +94,14 @@ class NodeJsHttpManager implements InfoData.IHttpManager {
     };
     var callback = function(response) {
       var str = '';
-      response.on('data', function(chunk) {
+      response.on('data', (chunk) => {
         str += chunk;
       });
-      response.on('end', function() {
+      response.on('end', ()  =>{
         var res = JSON.parse(str);
         deferred.resolve(res);
       });
-      response.on('error', function(err) {
-        var res = JSON.parse(str);
+      response.on('error', (err) => {
         deferred.reject(new Error(err));
       });
     }
@@ -123,15 +120,14 @@ class NodeJsHttpManager implements InfoData.IHttpManager {
     };
     var callback = function(response) {
       var str = '';
-      response.on('data', function(chunk) {
+      response.on('data', (chunk) => {
         str += chunk;
       });
-      response.on('end', function() {
+      response.on('end', () => {
         var res = JSON.parse(str);
         deferred.resolve(res);
       });
-      response.on('error', function(err) {
-        var res = JSON.parse(str);
+      response.on('error', (err) => {
         deferred.reject(new Error(err));
       });
     }
