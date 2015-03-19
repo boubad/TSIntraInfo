@@ -40,30 +40,64 @@ export interface IPerson extends IDescriptionItem {
   password: string;
   firstname: string;
   lastname: string;
-  email?: string;
-  phone?: string;
-  roles?: string[];
-  departementids?: any[];
-  anneeids?: any[];
-  semestreids?: any[];
-  matiereids?: any[];
-  uniteids?: any[];
-  groupeids?: any[];
-  infoids?: any[];
+  email: string;
+  phone: string;
+  roles: string[];
+  departementids: any[];
+  anneeids: any[];
+  semestreids: any[];
+  matiereids: any[];
+  uniteids: any[];
+  groupeids: any[];
+  infoids: any[];
   //
   fullname: string;
+  //
+  has_username:boolean;
+  has_password:boolean;
+  has_firstname:boolean;
+  has_lastname:boolean;
+  has_fullname:boolean;
+  has_email:boolean;
+  has_phone:boolean;
+  has_roles:boolean;
+  has_departementids:boolean;
+  has_anneeids:boolean;
+  has_semestreids:boolean;
+  has_uniteids:boolean;
+  has_matiereids:boolean;
+  has_groupeids:boolean;
+  has_infoids:boolean;
   //
   reset_password: () => void;
   check_password: (ct: string) => boolean;
   change_password: (ct: string) => void;
   //
-  hasrole?: (r: string) => boolean;
-  is_super?: boolean;
-  is_admin?: boolean;
-  is_oper?: boolean;
-  is_prof?: boolean;
-  is_etud?: boolean;
-  is_reader?: boolean;
+  hasrole: (r: string) => boolean;
+  is_super: boolean;
+  is_admin: boolean;
+  is_oper: boolean;
+  is_prof: boolean;
+  is_etud: boolean;
+  is_reader: boolean;
+  //
+  add_role :(r:string) => void;
+  remove_role: (r:string) => void;
+  //
+  add_departementid : (id:any)=>void;
+  remove_departementid : (id:any)=>void;
+  add_anneeid : (id:any)=>void;
+  remove_anneeid : (id:any)=>void;
+  add_semestreid : (id:any)=>void;
+  remove_semestreid : (id:any)=>void;
+  add_uniteid : (id:any)=>void;
+  remove_uniteid : (id:any)=>void;
+  add_matiereid : (id:any)=>void;
+  remove_matiereid : (id:any)=>void;
+  add_groupeid : (id:any)=>void;
+  remove_groupeid : (id:any)=>void;
+  add_infoid : (id:any)=>void;
+  remove_infoid : (id:any)=>void;
 }// interface IPerson
 export interface IProfPerson extends IPerson {
 
@@ -75,17 +109,32 @@ export interface IAdminPerson extends IPerson {
 
 }// interface IAdminPerson
 export interface IEtudiantPerson extends IPerson {
-  dossier?: string;
-  sexe?: string;
-  birthDate?: Date;
-  ville?: string;
-  etablissement?: string;
-  serieBac?: string;
-  optionBac?: string;
-  mentionBac?: string;
-  etudesSuperieures?: string;
+  dossier: string;
+  sexe: string;
+  birthDate: Date;
+  ville: string;
+  etablissement: string;
+  serieBac: string;
+  optionBac: string;
+  mentionBac: string;
+  etudesSuperieures: string;
+  //
+  has_dossier:boolean;
+  has_sexe:boolean;
+  has_birthDate:boolean;
+  has_ville:boolean;
+  has_etablissement:boolean;
+  has_serieBac:boolean;
+  has_optionBac:boolean;
+  has_mentionBac:boolean;
+  has_etudesSuperieures:boolean;
 }// interface IEtudiantPerson
 export interface IDepartement extends IDescriptionItem {
+  sigle: string;
+  name: string;
+  //
+  has_sigle: boolean;
+  has_name: boolean;
 }// interface IDepartement
 export interface IDepartementChild extends IDescriptionItem {
   departementid: any;
@@ -99,8 +148,11 @@ export interface ISigleNameItem extends IDepartementChild {
   has_name: boolean;
 }// interface ISigleNameItem
 export interface IIntervalItem extends ISigleNameItem {
-  startDate?: Date;
-  endDate?: Date;
+  startDate: Date;
+  endDate: Date;
+  //
+  has_startDate:boolean;
+  has_endDate:boolean;
 }// interface ISigleNameItem
 export interface IAnnee extends IIntervalItem {
 }
@@ -116,12 +168,16 @@ export interface ISemestre extends IIntervalItem {
 }// interface ISemestre
 export interface IMatiere extends ISigleNameItem {
   uniteid: any;
-  coefficient?: number;
-  ecs?: number;
-  genre?: string;
-  mat_module?: string;
+  coefficient: number;
+  ecs: number;
+  genre: string;
+  mat_module: string;
   //
   has_uniteid: boolean;
+  has_coefficient:boolean;
+  has_ecs:boolean;
+  has_genre:boolean;
+  has_mat_module:boolean
 }// interface IMatiere
 //
 export interface IDepartementPerson extends IDescriptionItem {
@@ -143,11 +199,11 @@ export interface IAdministrator extends IDepartementPerson {
 export interface IAffectation extends IDescriptionItem {
   semestreid: any;
   groupeid: any;
-  departementid?: any;
-  anneeid?: any;
-  personid?: any;
-  startDate?: Date;
-  endDate?: Date;
+  departementid: any;
+  anneeid: any;
+  personid: any;
+  startDate: Date;
+  endDate: Date;
   //
   has_semestreid: boolean;
   has_groupeid: boolean;
@@ -160,7 +216,7 @@ export interface IEtudAffectation extends IAffectation {
   has_etudiantid: boolean;
 }// interface IEtudAffectation
 export interface IProfAffectation extends IAffectation {
-  uniteid?: any;
+  uniteid: any;
   matiereid: any;
   enseignantid: any;
   //
@@ -169,31 +225,59 @@ export interface IProfAffectation extends IAffectation {
   has_enseignantid: boolean;
 }// interface IProfAffectation
 //
-export interface IGroupeEvent extends IDescriptionItem {
-  semestreid?: any;
-  matiereid?: any;
-  profaffectationid: any;
-  enseignantid?: any;
+export interface IBaseEvent extends IDescriptionItem {
+  departementid:any;
+  anneeid:any;
+  semestreid: any;
+  uniteid:any;
+  matiereid: any;
+  groupeid: any;
+  personid: any;
   date: Date;
   genre: string;
+  documentids: any[];
+  status:string;
+  //
+  has_departementid:boolean;
+  has_anneeid:boolean;
+  has_semestreid:boolean;
+  has_uniteid:boolean;
+  has_matiereid:boolean;   
+  has_groupeid:boolean;
+  has_personid:boolean;
+  has_date:boolean;
+  has_genre:boolean;
+  has_documentids:boolean;
+  has_status:boolean;
+}// interface IBaseEvent
+//
+export interface IGroupeEvent extends IBaseEvent {
+  profaffectationid: any;
+  enseignantid: any;
   name: string;
-  location?: string;
-  startTime?: Date;
-  endTime?: Date;
-  coefficient?: number;
-  documentids?: any[];
+  location: string;
+  startTime: Date;
+  endTime: Date;
+  coefficient: number;
+  //
+  has_profaffectationid:boolean;
+  has_enseignantid:boolean;
+  has_name:boolean;
+  has_location:boolean;
+  has_startTime:boolean;
+  has_endTime:boolean;
+  has_coefficient:boolean;
 }// interface IGroupeEvent
-export interface IEtudEvent extends IDescriptionItem {
+export interface IEtudEvent extends IBaseEvent {
   etudaffectationid: any;
   groupeeventid: any;
-  genre: string;
-  note?: number;
-  semestreid?: any;
-  matiereid?: any;
-  etudiantid?: any;
-  groupeid?: any;
-  date: Date;
-  documentids?: any[];
+  note: number;
+  etudiantid: any;
+  //
+  has_etudaffectationid:boolean;
+  has_groupeeventid:boolean;
+  has_note:boolean;
+  has_etudiantid:boolean;
 }// interface IGroupeEvent
 //
 export interface IHttpManager {
