@@ -102,7 +102,7 @@ class EtudEvent extends BaseEvent implements InfoData.IEtudEvent {
   public to_insert_map(oMap: any): void {
     super.to_insert_map(oMap);
     if (this.has_etudaffectationid) {
-      oMap.etudffectationid = this.etudaffectationid;
+      oMap.etudaffectationid = this.etudaffectationid;
     }
     if (this.has_groupeeventid) {
       oMap.groupeeventid = this.groupeeventid;
