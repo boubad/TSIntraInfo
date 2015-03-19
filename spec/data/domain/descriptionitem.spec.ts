@@ -72,7 +72,7 @@ describe('DescriptionItem Tests', () => {
     //
   });
   // normal constructor
-  describe(" empty constructor", () => {
+  describe(" normal constructor", () => {
     var data: DescriptionItem;
     var id:any = 100;
     var rev:any = 3;
